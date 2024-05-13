@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ckEditorMapper">
+	<select id="nextTestid" resultType="Integer">
+		SELECT testseq.NEXTVAL 
+		FROM DUAL
+	</select>
+	<select id="selectDataList" parameterType="egovframework.example.sample.service.NoticeVO" resultType="egovMap">
+		select 
+			*
+			from tb_test	
+	</select>
+	<select id="selectDataListTotCnt" parameterType="egovframework.example.sample.service.NoticeVO" resultType="Integer">
+		select 
+			count(*)
+			from tb_test	
+	</select>
+	<select id="selectNotice" parameterType="egovframework.example.sample.service.NoticeVO" resultType="egovframework.example.sample.service.NoticeVO">
+		select 
+			*
+			from tb_test
+			where 
+			testId = ${testId}
+	</select>
+	<insert id="saveNotice" parameterType="egovframework.example.sample.service.NoticeVO">
+		insert into
+		tb_test
+		(
+			testId
+			,title
+			,content
+			,name
+			,reg_dt
+		)
+		values(
+			${testId},
+			#{title},
+			#{content},
+			#{name},
+			sysdate
+		)
+	</insert>
+</mapper>
